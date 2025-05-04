@@ -18,9 +18,10 @@ const Register = () => {
     }
     try {
       console.log("Enviando al back", userData)
-      const res = await axios.post('http://localhost:3000/users', userData)
-      console.log("Recibiendo del back", res)
-      if (res.data.error) alert(res.data.error)
+      const data = (await axios.post('http://localhost:3000/users', userData)).data
+      console.log("Recibiendo del back", data)
+      if (data.error) return alert(data.error)
+      alert(data.msg)
     } catch (err) {
       alert(err)
     }
@@ -31,7 +32,7 @@ const Register = () => {
       <h1>Registro</h1>
       <form onSubmit={sendRequest}>
         <input type="text" placeholder="Nombre de usuario" value={userName} onChange={(e) => setUserName(e.target.value)} required/>
-        <input type="text" placeholder="Correo electronico" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+        <input type="email" placeholder="Correo electronico" value={email} onChange={(e) => setEmail(e.target.value)} required/>
         <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} required/>
         <input type="password" placeholder="Confirma contraseña" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required/>
         <button type='submit'>Registrarme</button>

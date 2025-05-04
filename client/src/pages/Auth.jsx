@@ -4,7 +4,7 @@ const Auth = () => {
   return (
     <>
       <h1>Study-Us</h1>
-      <button><Link to={"/login"}>Iniciar Sesión</Link></button>
+      <Link to={"/login"}><button>Iniciar Sesión</button></Link>
       <span>¿No tienes cuenta?<Link to={"/register"}>¡Regístrate!</Link></span>
     </>
   )
