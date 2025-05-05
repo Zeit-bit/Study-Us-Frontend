@@ -5,6 +5,18 @@
   align-items: center;
 }
 
+.register-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-logotext {
+  font-size: 36px;
+  color: white;
+  margin-bottom: 20px;
+}
+
 .register-container {
   background-color: white;
   padding: 40px 30px;
