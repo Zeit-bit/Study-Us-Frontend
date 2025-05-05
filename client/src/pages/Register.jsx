@@ -19,12 +19,12 @@ const [confirmPassword, setConfirmPassword] = useState("");
     };
     try {
       console.log("Enviando al back", userData);
-      const data = (await axios.post('http://localhost:3000/users', userData)).data;
+      const data = (await axios.post('http://localhost:3000/api/users', userData)).data;
       console.log("Recibiendo del back", data);
-      if (data.error) return alert(data.error);
-      alert(data.msg);
+      alert('Creado exitosamente');
     } catch (err) {
-      alert(err);
+      const errorMsg = err.response?.data?.error || err.message || 'Error desconocido';
+      alert(errorMsg);
     }
   };
 

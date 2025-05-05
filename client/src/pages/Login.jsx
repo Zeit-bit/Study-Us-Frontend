@@ -21,11 +21,12 @@ const Login = () => {
       password: password,
     };
     try {
-      const data = (await axios.post('http://localhost:3000/login', userData)).data;
-      if (data.error) return setModalInfo({ msg: data.error, btnMsg: "Volver a intentar" });
-      setModalInfo({ msg: `Bienvenido ${data.userName}`, btnMsg: "Ir a inicio", toPath: `/${data.userName}/inicio` });
+      const data = (await axios.post('http://localhost:3000/api/login', userData)).data;
+      window.localStorage.setItem('loggedUser', JSON.stringify(data))
+      setModalInfo({ msg: `Bienvenido ${data.userName}`, btnMsg: "Ir a inicio", toPath: `/${data.id}/inicio` });
     } catch (err) {
-      setModalInfo({ msg: err.name, btnMsg: "Volver a intentar" });
+      const errorMsg = err.response?.data?.error || err.message || 'Error desconocido';
+      setModalInfo({ msg: errorMsg, btnMsg: "Volver a intentar" });
     }
   };
 

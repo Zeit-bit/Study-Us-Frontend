@@ -1,10 +1,18 @@
-import { useParams } from "react-router-dom"
+import {useState, useEffect} from 'react'
+import axios from "axios"
 
 const Home = () => {
-    let params = useParams()
+    const [tasks, setTasks] = useState([])
+    const localStorageData = JSON.parse(localStorage.getItem('loggedUser'))
+    useEffect(() => {
+        axios.get(`http://localhost:3000/api/users/${localStorageData.id}/tasks`)
+        .then(response => {setTasks(response.data); console.log(response.data)} )
+    }, [localStorageData.id])
+
     return (
         <h1>
-            Inicio de usuario: {params.id}
+            Nombre de usuario: {localStorageData.userName}
+            {tasks.map(t => <li key={t.id}>{t.title} : {t.description}</li>)}
         </h1>
     )
 }
