@@ -4,7 +4,7 @@ import axios from 'axios';
 import './Register.css';  
 
 const Register = () => {
-const [userName, setUserName] = useState("");
+const [username, setUsername] = useState("");
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [confirmPassword, setConfirmPassword] = useState("");
@@ -13,13 +13,13 @@ const [confirmPassword, setConfirmPassword] = useState("");
     e.preventDefault();
     if (password !== confirmPassword) return alert("Las contraseñas no coinciden");
     let userData = {
-      userName: userName,
+      username: username,
       email: email,
       password: password
     };
     try {
       console.log("Enviando al back", userData);
-      const data = (await axios.post('http://localhost:3000/api/users', userData)).data;
+      const data = (await axios.post('http://localhost:3000/api/users/register', userData)).data;
       console.log("Recibiendo del back", data);
       alert('Creado exitosamente');
     } catch (err) {
@@ -38,8 +38,8 @@ const [confirmPassword, setConfirmPassword] = useState("");
             <input
               type="text"
               placeholder="Nombre de usuario"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
               className="register-input"
             />
