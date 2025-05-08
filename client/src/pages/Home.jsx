@@ -34,15 +34,20 @@ const Home = () => {
 
 	return (
 		<>
-		<div className="navbar">
-			<div className="navbar-title">Gestor de Tareas</div>
-			<button className="navbar-logout-button" onClick={() => {
-				localStorage.removeItem('loggedUser')
-				window.location.reload()
-			}}>
-				Cerrar sesión
-			</button>
-		</div>
+		<nav className="navbar">
+			<div className="navbar-div">
+				<div className='navbar-logo'><a href="#">Study-Us</a> </div>
+				<ul>
+					<li className='navbar-list'><a href='#'>Gestor de Tareas</a></li> 
+						<a className='navbar-separation'>|</a>
+					<li className='navbar-list'><a href='#'>Acerca De</a></li>
+						<a className='navbar-separation'>|</a>
+					<li className='navbar-list'> <a href='#'>Contacto</a></li>
+						<a className='navbar-separation'>|</a>
+					<button className='navbar-logout-button'><a href="#">Cerrar Sesión</a></button>
+				</ul>
+			</div>
+		</nav>
 		<div className="home-wrapper"> 
 			{localStorageData ?
 			<>
@@ -55,8 +60,8 @@ const Home = () => {
 							<tr>
 								<th>Tarea</th>
 								<th>Descripción</th>
-								<th>Tarea Completada</th>
-								<th>Eliminar Tarea</th>
+								<th className='table-allign-center-column'>Tarea Completada</th>
+								<th className='table-allign-center-column'>Eliminar Tarea</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -64,14 +69,14 @@ const Home = () => {
 								<tr key={t.id}>
 									<td>{t.title}</td>
 									<td>{t.description}</td>
-									<td>
-										<input
-											type="checkbox"
-											checked={t.completed}
-											onChange={(e) => toggleCheckbox(t.id, e.target.checked)}
-										/>
+									<td className='table-allign-center-column'>
+											<input className='table-checkbox'
+												type="checkbox"
+												checked={t.completed}
+												onChange={(e) => toggleCheckbox(t.id, e.target.checked)}
+											/>
 									</td>
-									<td>
+									<td className='table-allign-center-column'>
 										<button className='delete-button' onClick={() => deleteTask(t.id)}>Eliminar</button>
 									</td>
 								</tr>
