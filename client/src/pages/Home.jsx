@@ -44,7 +44,10 @@ const Home = () => {
 						<a className='navbar-separation'>|</a>
 					<li className='navbar-list'> <a href='#'>Contacto</a></li>
 						<a className='navbar-separation'>|</a>
-					<button className='navbar-logout-button'><a href="#">Cerrar Sesión</a></button>
+					<button className='navbar-logout-button'onClick={() => {
+					localStorage.removeItem('loggedUser')
+					window.location.reload()
+					}}><a href="#">Cerrar Sesión</a></button>
 				</ul>
 			</div>
 		</nav>
